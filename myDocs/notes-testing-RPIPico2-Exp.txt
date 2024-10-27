@@ -1,0 +1,100 @@
+10/24/24 https://www.youtube.com/watch?v=eJpPInZyOFQ 
+
+pico-sdk PICO_SDK_PATH=/home/devel/pico2/pico-sdk
+
+10/26/24 Forked https://github.com/jondurrant/RPIPico2-Exp branch test-dev
+
+git clone https://github.com/develone/RPIPico2-Exp.git -b test-dev
+
+cd RPIPico2-Exp
+
+git submodule update --init
+Submodule 'lib/eigen' (https://gitlab.com/libeigen/eigen) registered for path 'lib/eigen'
+Submodule 'lib/pi_spigot' (https://github.com/imahjoub/pi_spigot) registered for path 'lib/pi_spigot'
+Cloning into '/home/devel/RPIPico2-Exp/lib/eigen'...
+warning: redirecting to https://gitlab.com/libeigen/eigen.git/
+Cloning into '/home/devel/RPIPico2-Exp/lib/pi_spigot'...
+Submodule path 'lib/eigen': checked out '3147391d946bb4b6c68edd901f2add6ac1f31f8c'
+Submodule path 'lib/pi_spigot': checked out 'aa8325eb351a0926bd15509878c681b64f4f8234'
+
+cd RPIPico2-Exp/examples/Blink/
+
+mkdir build
+
+cd build
+
+cmake -DPICO_BOARD=pico2 -DFREERTOS_KERNEL_PATH=/home/devel/pico2/freertos/FreeRTOS-Kernel/ ..
+
+make
+
+devel@pi5-70:~/RPIPico2-Exp/examples/Blink/build $ ls src/
+Blink.bin  Blink.elf      Blink.uf2   cmake_install.cmake
+Blink.dis  Blink.elf.map  CMakeFiles  Makefile
+
+Tested Blink on hardware pico2 ok
+
+cd ../../PI1Core/
+
+mkdir build
+
+cd build
+
+cmake -DPICO_BOARD=pico2 -DFREERTOS_KERNEL_PATH=/home/devel/pico2/freertos/FreeRTOS-Kernel/ ..
+
+make
+
+devel@pi5-70:~/RPIPico2-Exp/examples/PI1Core/build $ ls src/
+CMakeFiles           Makefile         PICalc1Core.dis  PICalc1Core.elf.map
+cmake_install.cmake  PICalc1Core.bin  PICalc1Core.elf  PICalc1Core.uf2
+
+Tested PI1Core on hardware pico2 ok
+Welcome to minicom 2.8
+
+OPTIONS: I18n 
+Port /dev/ttyACM0, 06:59:49
+
+Press CTRL-A Z for help on special keys
+
+Go
+Sampled over 60 sec and 0 ms
+#       +Id     +Core
+0:      391     391
+1:      0       0
+2:      0
+3:      0
+Total: 391      6.516667 per sec
+cd ../../PI2Core/
+
+mkdir build
+
+cd build
+
+cmake -DPICO_BOARD=pico2 -DFREERTOS_KERNEL_PATH=/home/devel/pico2/freertos/FreeRTOS-Kernel/ ..
+
+make
+
+devel@pi5-70:~/RPIPico2-Exp/examples/PI2Core/build $ ls src/
+CMakeFiles           Makefile         PICalc2Core.dis  PICalc2Core.elf.map
+cmake_install.cmake  PICalc2Core.bin  PICalc2Core.elf  PICalc2Core.uf2
+
+Tested on hardware pico2 PI2Core
+### PI2Core
+ 
+Performance test the Pico 2 for Integer arithmetic calculation the value of 
+PI to 1000 decimal place. How many times can it complete this in 1 minute., 
+this time running across both cores of the Pico.
+
+Welcome to minicom 2.8
+
+OPTIONS: I18n 
+Port /dev/ttyACM0, 06:12:08
+
+Press CTRL-A Z for help on special keys
+
+Sampled over 60 sec and 0 ms
+#       +Id     +Core
+0:      384     384
+1:      384     384
+2:      0
+3:      0
+Total: 768      12.800000 per sec
