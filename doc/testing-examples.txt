@@ -1,0 +1,152 @@
+git clone https://github.com/develone/RPIPico2-Exp.git -b test-dev
+
+cd RPIPico2-Exp
+
+git submodule update --init
+
+cd cd RPIPico2-Exp/examples/Blink
+
+mkdir build
+
+cd build
+
+cmake ..
+
+make
+
+scp examples/Blink/build/src/Blink.uf2 pi5-80:/media/devel/RP2350/
+
+pico2 blink
+
+cd ../../PI1CORE
+
+mkdir build
+
+cd build
+
+cmake ..
+
+make
+
+scp src/PICalc1Core.uf2 pi5-80:/media/devel/RP2350/
+
+Welcome to minicom 2.8
+
+OPTIONS: I18n 
+Port /dev/ttyACM0, 13:01:20
+
+Press CTRL-A Z for help on special keys
+                                                        
+Go                                                      
+Sampled over 60 sec and 0 ms                            
+#       +Id     +Core                                   
+0:      391     391                                     
+1:      0       0
+2:      0
+3:      0
+Total: 391      6.516667 per sec
+
+cd ../../PI2Core/
+
+mkdir build
+
+cd build
+
+cmake ..
+
+make
+
+scp src/PICalc2Core.uf2  pi5-80:/media/devel/RP2350/
+
+Go
+Sampled over 60 sec and 0 ms
+#       +Id     +Core
+0:      384     384
+1:      384     384
+2:      0
+3:      0
+Total: 768      12.800000 per sec
+
+cd ~/pico2/freertos
+
+git clone  https://github.com/raspberrypi/FreeRTOS-Kernel.git
+
+cd FreeRTOS-Kernel/
+
+git submodule update --init
+
+environment variables
+
+PICTOOL_FETCH_FROM_GITHUB=/home/devel/pico2/BUILT_PICOTOOL
+
+PICO_FREERTOS=/home/devel/pico2/freertos/FreeRTOS-Kernel
+
+FREERTOS_KERNEL_PATH=/home/devel/pico2/freertos/FreeRTOS-Kernel
+
+PICO_EXTRAS_PATH=/home/devel/pico-extras
+
+PICO_SDK_PATH=/home/devel/pico2/pico-sdk
+
+cd ../../FreeRTOSBlink/
+
+mkdir build
+
+cd build
+
+ cmake ..
+Using PICO_SDK_PATH from environment ('/home/devel/pico2/pico-sdk')
+PICO_SDK_PATH is /home/devel/pico2/pico-sdk
+Target board (PICO_BOARD) is 'pico2'.
+Using board configuration from /home/devel/pico2/pico-sdk/src/boards/include/boards/pico2.h
+Pico Platform (PICO_PLATFORM) is 'rp2350-arm-s'.
+-- Defaulting build type to 'Release' since not specified.
+Defaulting compiler (PICO_COMPILER) to 'pico_arm_cortex_m33_gcc' since not specified.
+Configuring toolchain based on PICO_COMPILER 'pico_arm_cortex_m33_gcc'
+Defaulting PICO_GCC_TRIPLE to 'arm-none-eabi'
+-- The C compiler identification is GNU 12.2.1
+-- The CXX compiler identification is GNU 12.2.1
+-- The ASM compiler identification is GNU
+-- Found assembler: /usr/bin/arm-none-eabi-gcc
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/arm-none-eabi-gcc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/arm-none-eabi-g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+Build type is Release
+-- Found Python3: /usr/bin/python3 (found version "3.11.2") found components: Interpreter 
+TinyUSB available at /home/devel/pico2/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040; enabling build support for USB.
+BTstack available at /home/devel/pico2/pico-sdk/lib/btstack
+cyw43-driver available at /home/devel/pico2/pico-sdk/lib/cyw43-driver
+lwIP available at /home/devel/pico2/pico-sdk/lib/lwip
+mbedtls available at /home/devel/pico2/pico-sdk/lib/mbedtls
+-- Configuring done
+CMake Error at port/FreeRTOS-Kernel/freertos_config.cmake:3 (add_library):
+  Cannot find source file:
+
+    /home/devel/RPIPico2-Exp/examples/FreeRTOSBlink/port/FreeRTOS-Kernel/idleMemory.c
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .mpp .m .M .mm .ixx .cppm .h
+  .hh .h++ .hm .hpp .hxx .in .txx .f .F .for .f77 .f90 .f95 .f03 .hip .ispc
+Call Stack (most recent call first):
+  CMakeLists.txt:21 (include)
+
+
+CMake Error at src/CMakeLists.txt:1 (add_executable):
+  Cannot find source file:
+
+    /home/devel/RPIPico2-Exp/examples/FreeRTOSBlink/port/FreeRTOS-Kernel/idleMemory.c
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .mpp .m .M .mm .ixx .cppm .h
+  .hh .h++ .hm .hpp .hxx .in .txx .f .F .for .f77 .f90 .f95 .f03 .hip .ispc
+
+
+-- Generating done
+CMake Generate step failed.  Build files cannot be regenerated correctly.
+
+ 
+ 
