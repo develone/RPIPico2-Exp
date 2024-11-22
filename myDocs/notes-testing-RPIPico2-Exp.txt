@@ -98,3 +98,62 @@ Sampled over 60 sec and 0 ms
 2:      0
 3:      0
 Total: 768      12.800000 per sec
+
+Welcome to minicom 2.8
+
+OPTIONS: I18n 
+Port /dev/ttyUSB0, 04:53:02
+
+Press CTRL-A Z for help on special keys
+
+Tested FPUPerf pico2
+cd ../../FPUPerf
+
+mkdir build
+
+cd build
+
+cmake ..
+
+    PICO_DEFAULT_UART_RX_PIN=17
+    PICO_DEFAULT_UART_TX_PIN=16
+
+cp src/FPU.uf2 /media/devel/RP2350/
+
+Welcome to minicom 2.8
+
+OPTIONS: I18n 
+Port /dev/ttyUSB0, 04:53:02
+
+Press CTRL-A Z for help on special keys
+
+GO
+Sampled over 10 sec and 0 ms
+#       +Id     +Core
+0:      24999901        24999902
+1:      0       0
+2:      0
+3:      0
+Total: 24999901         2499990.100000 per sec
+
+Tested FPUPerf2040 on a pico
+cd ../../FPUPerf2040
+
+mkdir build
+
+cd build
+
+cmake ..
+
+    PICO_DEFAULT_UART_RX_PIN=17
+    PICO_DEFAULT_UART_TX_PIN=16
+cp src/FPU.uf2 /media/devel/RPI-RP2/
+
+GO
+Sampled over 10 sec and 0 ms
+#       +Id     +Core
+0:      16447282        16447282
+1:      0       0
+2:      0
+3:      0
+Total: 16447282         1644728.200000 per sec
