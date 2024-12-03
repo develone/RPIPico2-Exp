@@ -1,0 +1,98 @@
+devel@pi5-80:~/RPIPico2-Exp/examples $ find . -name *.a
+./FreeRTOSBlink/build/libfreertos_config.a
+
+[100%] Linking CXX executable Blink.elf
+/usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/bin/ld: CMakeFiles/Blink.dir/home/devel/pico2/freertos/FreeRTOS-Kernel/tasks.c.o: in function `prvCreateIdleTasks':
+/home/devel/pico2/freertos/FreeRTOS-Kernel/tasks.c:3598: undefined reference to `vApplicationGetIdleTaskMemory'
+/usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/bin/ld: CMakeFiles/Blink.dir/home/devel/pico2/freertos/FreeRTOS-Kernel/tasks.c.o: in function `vTaskSwitchContext':
+/home/devel/pico2/freertos/FreeRTOS-Kernel/tasks.c:5104: undefined reference to `vApplicationStackOverflowHook'
+/usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/bin/ld: CMakeFiles/Blink.dir/home/devel/pico2/freertos/FreeRTOS-Kernel/timers.c.o: in function `xTimerCreateTimerTask':
+/home/devel/pico2/freertos/FreeRTOS-Kernel/timers.c:294: undefined reference to `vApplicationGetTimerTaskMemory'
+collect2: error: ld returned 1 exit status
+make[2]: *** [src/CMakeFiles/Blink.dir/build.make:1579: src/Blink.elf] Error 1
+make[1]: *** [CMakeFiles/Makefile2:2065: src/CMakeFiles/Blink.dir/all] Error 2
+make: *** [Makefile:156: all] Error 2
+
+devel@pi5-80:~/RPIPico2-Exp/examples $ echo $FREERTOS_KERNEL_PATH
+/home/devel/pico2/freertos/FreeRTOS-Kernel
+
+devel@pi5-80:~/RPIPico2-Exp/examples $ echo $PICO_FREERTOS
+/home/devel/pico2/freertos/FreeRTOS-Kernel
+
+
+git clone https://github.com/raspberrypi/FreeRTOS-Kernel.git
+
+devel@pi5-80:~ $ cd pico2/FreeRTOS-Kernel/
+devel@pi5-80:~/pico2/FreeRTOS-Kernel $ git submodule update --init
+
+devel@pi5-80:~/RPIPico2-Exp/examples $ echo $PICO_FREERTOS
+/home/devel/pico2/freertos/FreeRTOS-Kernel
+
+devel@pi5-80:~/RPIPico2-Exp/examples/FreeRTOSBlink/build $ cmake ..
+Using PICO_SDK_PATH from environment ('/home/devel/pico2/pico-sdk')
+PICO_SDK_PATH is /home/devel/pico2/pico-sdk
+Target board (PICO_BOARD) is 'pico2'.
+Using board configuration from /home/devel/pico2/pico-sdk/src/boards/include/boards/pico2.h
+Pico Platform (PICO_PLATFORM) is 'rp2350-arm-s'.
+-- Defaulting build type to 'Release' since not specified.
+Defaulting compiler (PICO_COMPILER) to 'pico_arm_cortex_m33_gcc' since not specified.
+Configuring toolchain based on PICO_COMPILER 'pico_arm_cortex_m33_gcc'
+Defaulting PICO_GCC_TRIPLE to 'arm-none-eabi'
+-- The C compiler identification is GNU 12.2.1
+-- The CXX compiler identification is GNU 12.2.1
+-- The ASM compiler identification is GNU
+-- Found assembler: /usr/bin/arm-none-eabi-gcc
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/arm-none-eabi-gcc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/arm-none-eabi-g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+Build type is Release
+-- Found Python3: /usr/bin/python3 (found version "3.11.2") found components: Interpreter 
+TinyUSB available at /home/devel/pico2/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040; enabling build support for USB.
+BTstack available at /home/devel/pico2/pico-sdk/lib/btstack
+cyw43-driver available at /home/devel/pico2/pico-sdk/lib/cyw43-driver
+lwIP available at /home/devel/pico2/pico-sdk/lib/lwip
+mbedtls available at /home/devel/pico2/pico-sdk/lib/mbedtls
+-- Configuring done
+CMake Error at port/FreeRTOS-Kernel/freertos_config.cmake:3 (add_library):
+  Cannot find source file:
+
+    /home/devel/RPIPico2-Exp/examples/FreeRTOSBlink/port/FreeRTOS-Kernel/idleMemory.c
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .mpp .m .M .mm .ixx .cppm .h
+  .hh .h++ .hm .hpp .hxx .in .txx .f .F .for .f77 .f90 .f95 .f03 .hip .ispc
+Call Stack (most recent call first):
+  CMakeLists.txt:21 (include)
+
+
+CMake Error at src/CMakeLists.txt:1 (add_executable):
+  Cannot find source file:
+
+    /home/devel/RPIPico2-Exp/examples/FreeRTOSBlink/port/FreeRTOS-Kernel/idleMemory.c
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .mpp .m .M .mm .ixx .cppm .h
+  .hh .h++ .hm .hpp .hxx .in .txx .f .F .for .f77 .f90 .f95 .f03 .hip .ispc
+
+
+-- Generating done
+CMake Generate step failed.  Build files cannot be regenerated correctly.
+
+devel@pi5-80:~/RPIPico2-Exp/examples $ find . -name *.a
+./FreeRTOSBlink/build/libfreertos_config.a
+
+devel@pi5-80:~/RPIPico2-Exp/examples $ find . -name *.uf2
+./PI2Core/build/src/PICalc2Core.uf2
+./PI1Core/build/src/PICalc1Core.uf2
+./FPUPerf2040/build/src/FPU.uf2
+./FPUPerf/build/src/FPU.uf2
+./Blink/build/src/Blink.uf2
+
+
+
+ 
